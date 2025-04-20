@@ -35,11 +35,11 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return credit == course.credit && name.equals(course.name);
+        return name.equals(course.name);
     }
 
     @Override 
     public int hashCode() {
-        return Objects.hash(name, credit);
+        return Objects.hash(name);
     }
 }

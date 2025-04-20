@@ -14,6 +14,12 @@ public class CourseLog {
         courses = new HashSet<>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: clears all courses from the list
+    public void clearCourses() {
+        courses.clear();
+    }
+
     // getters
     public static CourseLog getInstance() {
         if (instance == null) {

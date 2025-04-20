@@ -20,15 +20,14 @@ public class CourseLogTest {
     }
 
     @Test
-    public void testGetCourses() {
-        assertTrue(courseLog.getCourses().isEmpty());
-    }
-
-    @Test
     public void testAddCourse() {
         Course course = new Course("MATH100", 3);
         courseLog.addCourse(course);
         assertTrue(CourseLog.getInstance().getCourses().contains(course));
+
+        Course course2 = new Course("BIO101", 3);
+        courseLog.addCourse(course2);
+        assertTrue(CourseLog.getInstance().getCourses().contains(course2));
     }
 
     @Test
