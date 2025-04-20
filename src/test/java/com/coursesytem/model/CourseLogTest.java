@@ -21,7 +21,22 @@ public class CourseLogTest {
 
     @Test
     public void testGetCourses() {
-        assertNotNull(courseLog.getCourses());
         assertTrue(courseLog.getCourses().isEmpty());
+    }
+
+    @Test
+    public void testAddCourse() {
+        Course course = new Course("MATH100", 3);
+        courseLog.addCourse(course);
+        assertTrue(CourseLog.getInstance().getCourses().contains(course));
+    }
+
+    @Test
+    public void testAddDuplicateCourse() {
+        Course course1 = new Course("MATH100", 3);
+        Course course2 = new Course("MATH100", 3);
+        courseLog.addCourse(course1);
+        courseLog.addCourse(course2);
+        assertEquals(1, courseLog.getCourses().size());
     }
 }

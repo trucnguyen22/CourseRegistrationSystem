@@ -1,6 +1,8 @@
 package com.coursesytem.model;
 
-// An course
+import java.util.Objects;
+
+// A class representing a course in the course system
 public class Course {
 
     private static final int MAX_CAPACITY = 30;
@@ -15,7 +17,7 @@ public class Course {
         curCapacity = 0;
     }
 
-    //getters
+    // getters
     public String getName() {
         return name;
     }
@@ -28,4 +30,16 @@ public class Course {
         return curCapacity;
     }
 
+    @Override 
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return credit == course.credit && name.equals(course.name);
+    }
+
+    @Override 
+    public int hashCode() {
+        return Objects.hash(name, credit);
+    }
 }

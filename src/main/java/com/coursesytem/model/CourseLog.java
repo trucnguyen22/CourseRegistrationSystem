@@ -1,18 +1,20 @@
 package com.coursesytem.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+// A singleton class that manages a list of courses
 public class CourseLog {
 
     private static CourseLog instance;
     
-    private List<Course> courses;
+    private Set<Course> courses;
 
     private CourseLog() {
-        courses = new ArrayList<>();
+        courses = new HashSet<>();
     }
 
+    // getters
     public static CourseLog getInstance() {
         if (instance == null) {
             instance = new CourseLog();
@@ -20,7 +22,14 @@ public class CourseLog {
         return instance;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: add a course to the list of courses 
+    //          if it is not already in the list
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 }
