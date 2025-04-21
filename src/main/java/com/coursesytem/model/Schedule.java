@@ -2,7 +2,9 @@ package com.coursesytem.model;
 
 import java.util.*;
 
+// A class representing a student's schedule
 public class Schedule {
+    
     public static String[] weekdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
     private Set<Course> registeredCourses;

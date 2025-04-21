@@ -19,10 +19,8 @@ public class CourseTest {
     public void testConstructor() {
         assertEquals("MATH100", course1.getName());
         assertEquals(3, course1.getCredit());
-        assertEquals(0, course1.getCurrentCapacity());
 
         assertEquals("CPSC110", course2.getName());
         assertEquals(4, course2.getCredit());
-        assertEquals(0, course2.getCurrentCapacity());
     }
 }

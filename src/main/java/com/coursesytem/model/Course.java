@@ -5,16 +5,12 @@ import java.util.Objects;
 // A class representing a course in the course system
 public class Course {
 
-    private static final int MAX_CAPACITY = 30;
-
     private String name;
     private int credit;
-    private int curCapacity;
 
     public Course(String name, int credit) {
         this.name = name;
         this.credit = credit;
-        curCapacity = 0;
     }
 
     // getters
@@ -24,10 +20,6 @@ public class Course {
 
     public int getCredit() {
         return credit;
-    }
-
-    public int getCurrentCapacity() {
-        return curCapacity;
     }
 
     @Override 
