@@ -24,7 +24,7 @@ public class ScheduleTest {
 
         @Test
         public void testAddCourseWhenCourseNotInLog() {
-            schedule.addCourse(course1);
+            assertFalse(schedule.addCourse(course1));
             Set<Course> registeredCourses = schedule.getRegisteredCourses();
             assertFalse(registeredCourses.contains(course1));
         }
@@ -32,7 +32,7 @@ public class ScheduleTest {
         @Test
         public void testAddCourseWhenCourseInLog() {
             courseLog.getCourses().add(course2);
-            schedule.addCourse(course2);
+            assertTrue(schedule.addCourse(course2));
             Set<Course> registeredCourses = schedule.getRegisteredCourses();
             assertTrue(registeredCourses.contains(course2));
         }
@@ -41,5 +41,32 @@ public class ScheduleTest {
         public void testWeekdaysArray() {
             String[] expectedWeekdays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
             assertArrayEquals(expectedWeekdays, Schedule.weekdays);
+        }
+
+        @Test
+        public void testAddClassSectionToTable() {
+            courseLog.getCourses().add(course1);
+            ClassSection classSection = new ClassSection("MATH100", 9, 11);
+            course1.addClassSection(classSection);
+            schedule.addClassSectionToTable(course1, classSection, "Monday", 9, 11);
+
+            Set<ClassSection> sections = schedule.getRegisteredClassSection();
+            assertTrue(sections.contains(classSection));
+
+            Map<String, Set<ClassSection>> table = schedule.getTable();
+            assertTrue(table.containsKey("Monday"));
+            assertTrue(table.get("Monday").contains(classSection));
+        }
+
+        @Test
+        public void testAddClassSectionToTableWhenCourseNotInLog() {
+            ClassSection classSection = new ClassSection("MATH100", 9, 11);
+            schedule.addClassSectionToTable(course1, classSection, "Monday", 9, 11);
+
+            Set<ClassSection> sections = schedule.getRegisteredClassSection();
+            assertFalse(sections.contains(classSection));
+
+            Map<String, Set<ClassSection>> table = schedule.getTable();
+            assertFalse(table.containsKey("Monday"));
         }
 }

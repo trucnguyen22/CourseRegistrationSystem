@@ -1,16 +1,18 @@
 package com.coursesytem.model;
 
-import java.util.Objects;
+import java.util.*;
 
 // A class representing a course in the course system
 public class Course {
 
     private String name;
     private int credit;
+    private Set<ClassSection> classSections;
 
     public Course(String name, int credit) {
         this.name = name;
         this.credit = credit;
+        classSections = new HashSet<>();
     }
 
     // getters
@@ -20,6 +22,15 @@ public class Course {
 
     public int getCredit() {
         return credit;
+    }
+
+    public Set<ClassSection> getClassSections() {
+        return classSections;
+    }
+
+    // EFFECTS: add a class section to the course
+    public void addClassSection(ClassSection classSection) {
+        classSections.add(classSection);
     }
 
     @Override 

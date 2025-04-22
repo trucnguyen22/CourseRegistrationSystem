@@ -1,5 +1,7 @@
 package com.coursesytem.model;
 
+import java.util.*;
+
 // A class representing a section of a course
 public class ClassSection {
 
@@ -16,6 +18,22 @@ public class ClassSection {
         this.startTime = startTime;
         this.endTime = endTime;
         capacity = 0;
+    }
+
+    // setters
+
+    // REQUIRES: 0 <= startTime <= 24
+    // MODIFIES: this
+    public int setStartTime(int startTime) {
+        this.startTime = startTime;
+        return this.startTime;
+    }
+
+    // REQUIRES: 0 <= endTime <= 24
+    // MODIFIES: this
+    public int setEndTime(int endTime) {
+        this.endTime = endTime;
+        return this.endTime;
     }
 
     // getters
@@ -45,5 +63,18 @@ public class ClassSection {
 
     public boolean isFull() {
         return capacity >= MAX_CAPACITY;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClassSection that = (ClassSection) o;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
