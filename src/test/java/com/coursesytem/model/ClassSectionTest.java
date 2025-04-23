@@ -7,11 +7,17 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
 
-class ClassSectionTest {
+public class ClassSectionTest {
+
+    ClassSection section;
+    
+    @Before
+    public void setUp() {
+        section = new ClassSection("MATH100", 9, 11);
+    }
 
     @Test
-    void testConstructor() {
-        ClassSection section = new ClassSection("MATH100", 9, 11);
+    public void testConstructor() {
         assertEquals("MATH100", section.getName());
         assertEquals(9, section.getStartTime());
         assertEquals(11, section.getEndTime());
@@ -19,15 +25,13 @@ class ClassSectionTest {
     }
 
     @Test
-    void testAddStudent() {
-        ClassSection section = new ClassSection("MATH100", 9, 11);
+    public void testAddStudent() {
         section.addStudent();
         assertEquals(1, section.getCapacity());
     }
 
     @Test
-    void testAddStudentMaxCapacity() {
-        ClassSection section = new ClassSection("MATH100", 9, 11);
+    public void testAddStudentMaxCapacity() {
         for (int i = 0; i < 30; i++) {
             section.addStudent();
         }
@@ -37,12 +41,22 @@ class ClassSectionTest {
     }
 
     @Test
-    void testIsFull() {
-        ClassSection section = new ClassSection("MATH100", 9, 11);
+    public void testIsFull() {
         assertFalse(section.isFull());
         for (int i = 0; i < 30; i++) {
             section.addStudent();
         }
         assertTrue(section.isFull());
+    }
+
+    @Test
+    public void testTime() {
+        assertEquals(9, section.getStartTime());
+        assertEquals(11, section.getEndTime());
+
+        section.setStartTime(15);
+        section.setEndTime(17);
+        assertEquals(15, section.getStartTime());
+        assertEquals(17, section.getEndTime());
     }
 }

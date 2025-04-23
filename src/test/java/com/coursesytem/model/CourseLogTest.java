@@ -11,6 +11,7 @@ public class CourseLogTest {
     @Before
     public void setUp() {
         courseLog = CourseLog.getInstance();
+        courseLog.clearCourses();
     }
 
     @Test
